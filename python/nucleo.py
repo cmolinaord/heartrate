@@ -3,17 +3,17 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import serial, re
 
-frec = .1
+frec = 1
 buff = ""
 
-nucleo = serial.Serial('/dev/ttyACM0', 115200, timeout = 1)
+nucleo = serial.Serial('/dev/ttyACM0', 9600, timeout = 1)
 refresh = 5
 def data_gen(t=0):
     #cnt = 0
     while True:
         #cnt += 1
-        t += frec * 0.01
-        yield t, int(nucleo.readline())
+        t += frec * 0.02
+        yield t, float(nucleo.readline())
 
 def lectura():
     global buff
@@ -28,7 +28,7 @@ def lectura():
 
 
 def init():
-    ax.set_ylim(-1, 500)
+    ax.set_ylim(0, 5)
     ax.set_xlim(0, refresh)
     del xdata[:]
     del ydata[:]
