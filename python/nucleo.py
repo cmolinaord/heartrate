@@ -8,20 +8,19 @@ buff = ""
 
 nucleo = serial.Serial('/dev/ttyACM0', 9600, timeout = 1)
 refresh = 5
-def data_gen(t=0):
-    #cnt = 0
-    while True:
-        #cnt += 1
-        t += frec * 0.02
-        yield t, float(nucleo.readline())
 
-def lectura():
+
+lectura1 = nucleo.readline()
+values = re.split('>| |\n|\r', lectura1)
+t0 = int(values[1])
+
+def data_gen():
     global buff
-	# Lee maximo 15 bytes
-    buff += nucleo.read(12)
-    values =  re.split('>| |\n', buff)
-    return values[1:3]
-
+    buff = nucleo.readline()
+    values = re.split('>| |\n|\r', buff)
+    t, y = values[1:3]
+    t = int(t) - t0
+    yield t, float(y)
 
 
 def init():
@@ -36,7 +35,6 @@ fig, ax = plt.subplots()
 line, = ax.plot([], [], lw=2)
 ax.grid()
 xdata, ydata = [], []
-
 
 def run(data):
     # update the data
