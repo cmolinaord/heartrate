@@ -17,13 +17,10 @@ def data_gen(t=0):
 
 def lectura():
     global buff
-    buff += nucleo.read(6)
-    values =  re.split('({....})', buff)
-    if len(values) != 1:
-        buff = values[2]
-        return float(values[1][1:-1])
-    else:
-        return 0
+	# Lee maximo 15 bytes
+    buff += nucleo.read(12)
+    values =  re.split('>| |\n', buff)
+    return values[1:3]
 
 
 
