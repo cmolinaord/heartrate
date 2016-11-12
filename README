@@ -1,0 +1,8 @@
+heartrate
+=========
+
+Este pequeño proyecto trata de crear un script facilmente ejecutable en Arduino con el que
+monitorizar en tiempo real la señal electrocardiografica del usuario usando el 
+modulo de Sparkfun AD8232.
+
+Usa un script de Python para leer los datos recibidos por el puerto serie
