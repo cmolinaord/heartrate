@@ -46,10 +46,10 @@ void loop() {
   }
   else{
     // Enviar tiempo en milisegundos y lectura en Voltios
-			Serial.print(">")
+			Serial.print(">");
 			Serial.print(millis());
 			Serial.print(" ");
-			Serial.println(analogRead(A0)*5.0/1024,4);
+			Serial.print(analogRead(A0)*5.0/1024,4);
   }
   //Wait for a bit to keep serial data from saturating
   delay(2);
